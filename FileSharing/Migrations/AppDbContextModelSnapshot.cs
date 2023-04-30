@@ -46,7 +46,7 @@ namespace FileSharing.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Uploads", (string)null);
+                    b.ToTable("Uploads");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -78,14 +78,14 @@ namespace FileSharing.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0cf4ad18-84bf-4ea4-b0cc-b367a4af6c0e",
+                            Id = "68cb3a42-ad08-42cf-83c9-a11e2189d74f",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "4f12acd9-52f7-4557-9e2f-d87a4069be0b",
+                            Id = "da74e395-3062-4fbb-8028-5a2d125dcd4d",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
