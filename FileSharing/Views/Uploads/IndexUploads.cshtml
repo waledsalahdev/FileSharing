@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FileSharing.Models.UploadVm>
+
+    <h1> My Uploads </h1>
+    <p>
+        <a class="btn btn-primary" asp-action="Creat" role="button">Create New </a>
+
+    </p>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>@Html.DisplayNameFor(model=>model.Originalname)  </th>
+      <th>@Html.DisplayNameFor(model=>model.Size)</th>
+      <th>@Html.DisplayNameFor(model=>model.ContentType)</th>
+      <th>@Html.DisplayNameFor(model=>model.UploadDate)</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var file in Model)
+        {
+            <tr>
+                <td>
+                  @Html.DisplayFor(model=>file.Originalname)
+              </td>
+              <td>
+                   @Html.DisplayFor(model=>file.Size)
+              </td>
+              <td>
+                    @Html.DisplayFor(model=>file.ContentType)
+
+              </td>
+                    <td>
+                    @Html.DisplayFor(model=>file.UploadDate)
+
+              </td>
+    
+          </tr>
+        }
+
+  </tbody>
+</table>

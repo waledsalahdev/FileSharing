@@ -4,6 +4,7 @@ using FileSharing.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FileSharing.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531195120_adduploaddate")]
+    partial class adduploaddate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,10 +35,6 @@ namespace FileSharing.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Originalname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -85,14 +84,14 @@ namespace FileSharing.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ab3a8e4c-9b9b-4df6-91f4-1c518df1769e",
+                            Id = "c7b0752c-e50f-4846-8286-72193f1c1686",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "97d9e06d-b7c3-4ed5-a8e3-bca6a119a969",
+                            Id = "84f1732f-7d57-4517-ae48-760ce77b6226",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"

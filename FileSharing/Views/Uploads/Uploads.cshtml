@@ -1,15 +1,24 @@
-﻿@model FileSharing.Models.UploadsVM
+﻿@model FileSharing.Models.InputUpload
+@{
+    ViewData["Title"] = "Create";
+}
 
 <h1>Upload File</h1>
 <div class="row">
     <div class="col-md-4">
         <div asp-validation-summary="ModelOnly"></div>
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form  asp-action="Creat" enctype="multipart/form-data">
             <div class="from-group">
                 <label asp-for="File" class="form-label"></label>
                 <input  asp-for="File" type="file" class="form-control">
                  <span asp-validation-for="File" class="text-danger"></span>
             </div>
+            
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            upload
+                        </button>
+                     </div>
         </form>
     </div>
 </div>
