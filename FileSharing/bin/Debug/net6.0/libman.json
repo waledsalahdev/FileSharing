@@ -9,6 +9,20 @@
         "css/all.min.css",
         "js/all.min.js"
       ]
+    },
+    {
+      "library": "bootbox.js@6.0.0",
+      "destination": "wwwroot/lib/bootbox.js/",
+      "files": [
+        "bootbox.min.js"
+      ]
+    },
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/lib/animate.css/",
+      "files": [
+        "animate.min.css"
+      ]
     }
   ]
 }

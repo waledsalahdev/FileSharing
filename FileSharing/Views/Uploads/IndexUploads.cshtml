@@ -1,4 +1,16 @@
 ﻿@model IEnumerable<FileSharing.Models.UploadVm>
+@{
+    var imagestypes = new[]
+      {"image/apng"
+      ,"image/avif"
+      ,"image/jpeg"
+      ,"image/png"
+      ,"image/svg+xml"
+      ,"image/webp"
+      ,"image/gif"
+
+    };
+}
 
     <h1> My Uploads </h1>
     <p>
@@ -8,19 +20,40 @@
 <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
+      <th>Priview </th>
       <th>@Html.DisplayNameFor(model=>model.Originalname)  </th>
+      <th class="d-none">@Html.DisplayNameFor(model=>model.FileName)</th>
       <th>@Html.DisplayNameFor(model=>model.Size)</th>
       <th>@Html.DisplayNameFor(model=>model.ContentType)</th>
       <th>@Html.DisplayNameFor(model=>model.UploadDate)</th>
+      <th>Actions</th>
    
-    </tr>
+    </tr> 
   </thead>
-  <tbody>
+  <tbody >
+
       @foreach(var file in Model)
         {
-            <tr>
+            <tr calss="parent" > 
+                <td>
+                    @if (imagestypes.Contains(file.ContentType))
+                    {   
+                        <img src="/UserFiles/@file.FileName" 
+                        class="rounded"
+                        width="100"
+                        height="140"
+                        alt="@file.Originalname"
+               
+                        >
+
+                        
+                    }
+              </td>
                 <td>
                   @Html.DisplayFor(model=>file.Originalname)
+              </td>
+              <td class="d-none cur">
+                  @Html.DisplayFor(model=>file.FileName)
               </td>
               <td>
                    @Html.DisplayFor(model=>file.Size)
@@ -33,9 +66,70 @@
                     @Html.DisplayFor(model=>file.UploadDate)
 
               </td>
+              <td>
+@*                <a class=" m-1"  asp-action="Delete"  asp-route-id="@file.FileName" role="button"><i class="fa-solid fa-pen-to-square"></i></a> 
+*@                <a  class=" m-1 del" 
+                    href="javascript:;"
+                    title="Delete"
+                    role="button"
+                    data-id="@file.FileName">
+                @*    asp-action="Delete"
+                    asp-route-id="@file.FileName"*@
+                    <i class="fa-solid fa-trash"></i> </a> 
+              </td>
     
           </tr>
+
         }
 
   </tbody>
 </table>
+@section Scripts{
+    <script>
+
+    $(document).ready(function()    
+    {
+        $('.del').on('click',function(){
+            var btn=$(this);
+            var id=btn.data('id');
+            bootbox.confirm({
+                 message: 'Are You Sure Delete This File?',
+                 buttons: {
+                 confirm: {
+                 label: 'Yes',
+                 className: 'btn-danger'
+                 },
+                 cancel: {
+                 label: 'No',
+                 className: 'btn-outline-secondary'
+                 }
+                 },
+                    callback: function (result) {
+                       if(result)   
+                        {
+                           $.ajax({
+                               url:'/Uploads/Delete/'+id,
+                               method:'POST',           
+                               success:function(res){
+                                   var fileparent=btn.parents('tr');
+                                     fileparent.addClass("animate__animated animate__backOutDown");
+                                     setTimeout(function(){
+                                         fileparent.remove();
+                                     },700)
+                                   },
+                               error:function(res){
+
+                               },
+
+                     });
+                     };
+                 }
+                 });    
+
+
+
+        });
+    });
+</script>
+
+}

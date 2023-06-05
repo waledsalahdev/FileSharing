@@ -1,6 +1,7 @@
 using FileSharing.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,15 @@ builder.Services.AddControllersWithViews();
 // By add Two Packadge MicIdentityCore + IDentity FrameWork 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMvc().AddNToastNotifyToastr( new ToastrOptions    
+{
+    ProgressBar = true,
+PositionClass = ToastPositions.TopRight,
+PreventDuplicates = true,
+CloseButton=true,
+
+TimeOut=2000,
+});
 builder.Services.AddDbContext<AppDbContext>(options =>
     {
 
@@ -30,6 +40,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseNToastNotify();
 
 app.UseRouting();
 app.UseAuthentication();
